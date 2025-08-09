@@ -72,9 +72,6 @@ export default function FeedPage() {
           <Link href="/perfil" className="hover:underline">
             Perfil
           </Link>
-          <Link href="/crear" className="hover:underline">
-            Crear post
-          </Link>
         </div>
       </nav>
 

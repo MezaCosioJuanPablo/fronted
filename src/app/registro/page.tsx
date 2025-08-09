@@ -10,13 +10,24 @@ export default function RegisterPage() {
   const [message, setMessage] = useState("");
   const router = useRouter();
 
-  const handleRegister = async (e: React.FormEvent) => {
+  const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!username || !email || !password) {
       setMessage("Por favor, llena todos los campos.");
       return;
     }
+
+    // Obtener usuarios existentes
+    const savedUsers = localStorage.getItem("acapulco_users");
+    const users = savedUsers ? JSON.parse(savedUsers) : [];
+
+    // Agregar nuevo usuario
+    const newUser = { username, email };
+    users.push(newUser);
+
+    // Guardar en localStorage
+    localStorage.setItem("acapulco_users", JSON.stringify(users));
 
     setMessage("Registro exitoso. Redirigiendo al login...");
     setTimeout(() => {
